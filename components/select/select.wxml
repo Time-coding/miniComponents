@@ -1,0 +1,25 @@
+<!--tab组件模版  -->
+<view class='compont_select'>
+  <!--头部  -->
+  <view class='compont_s_header' style='height:{{slectTop}}rpx;line-height:{{slectTop}}rpx;justify-content: {{justifyContent}};'>
+    <view class='compont_s_text' wx:for="{{statusObject}}" wx:key='item' data-index='{{index}}' bindtap='_bindTabClick'>
+      <text wx:if='{{selectItem}}'>{{selectItem}}</text>
+      <text wx:else>{{item[0]}}</text>
+      <view class='jianT'>
+        <image wx:if='{{index==iheader}}' src='/images/bottom.png'></image>
+        <image wx:else src='/images/top.png'></image>
+      </view>
+    </view>
+  </view>
+  <!--list  -->
+  <view class='compont_s_list' style='top:{{slectTop+2}}rpx;margin-bottom:-{{slectTop+2}}rpx' wx:if='{{showOptions}}'>
+    <block wx:for='{{statusObject[iheader]}}' wx:key='item'>
+      <view class='compont_s_l_info' bindtap='onTap' data-index='{{index}}' data-name='{{item}}'>
+        <text>{{item}}</text>
+        <view wx:if='{{index==ioption}}' class='yesIcon'>
+          <image src='/images/yes.png'></image>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

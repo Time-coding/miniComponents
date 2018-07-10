@@ -1,0 +1,10 @@
+<!--index.wxml-->
+<view>
+    <select 
+    slectTop='100' 
+    statusObject="{{array}}"
+    bindselect='bindtap'>
+
+    </select>
+
+</view>

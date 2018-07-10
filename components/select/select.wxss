@@ -1,0 +1,65 @@
+.compont_select {
+  font-size: 30rpx;
+  position: relative;
+}
+
+.compont_s_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f2f2f2;
+  padding: 0 20rpx;
+}
+
+.compont_s_text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+image {
+  width: 100%;
+  height: 100%;
+}
+
+/*箭头  */
+
+.jianT {
+  margin-left: 15rpx;
+  width: 20rpx;
+  height: 15rpx;
+  display: flex;
+  align-items: center;
+}
+.jianT image{
+  width: 100%;
+  height: 100%;
+}
+/* 下拉列表 */
+
+.compont_s_list {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.25);
+  transition: top 0.4s ease;
+  font-size: 28rpx;
+}
+
+.compont_s_l_info {
+  padding: 20rpx;
+  display: flex;
+  background-color: #fff;
+  justify-content: space-between;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.yesIcon {
+  margin-right: 20rpx;
+  font-weight: 700;
+  font-stretch: ultra-condensed;
+  height: 40rpx;
+  width: 40rpx;
+}
