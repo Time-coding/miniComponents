@@ -2,49 +2,53 @@ Component({
   options: {
     multipleSlots: true // 在组件定义时的选项中启用多slot支持
   },
-  properties: { 
+  properties: {
     statusObject: {
       type: Array,
-      value: [
-        {
-          0: '复合状态',
-          1: '已复合',
-          2: '待复合'
-        },
-        {
-          0: '结算状态',
-          1: '已结算',
-          2: '待结算'
-        },
-        {
-          0: '购买状态',
-          1: '已购买',
-          2: '待购买'
-        }
-      ],
-      observer: function (newVal, oldVal, changedPath) {
+      value: [],
+      observer: function(newVal, oldVal, changedPath) {
         // 属性被改变时执行的函数（可选），也可以写成在methods段中定义的方法名字符串, 如：'_propertyChange'
         // 通常 newVal 就是新设置的数据， oldVal 是旧数据
       }
     },
-    slectTop:{
+    slectTop: {
       type: Number,
-      value:100,
+      value: 100,
+      observer: function(newVal, oldVal, changedPath) {
+        // this._getRect()
+        // 属性被改变时执行的函数（可选），也可以写成在methods段中定义的方法名字符串, 如：'_propertyChange'
+        // 通常 newVal 就是新设置的数据， oldVal 是旧数据
+      }
     },
-    justifyContent:{
+    justifyContent: {
       type: String,
-      value:'space-between'
+      value: 'space-between'
     }
   },
-  data:{
+  data: {
     iheader: null,
-    // slectTop: 100,
-    optionList:[],
+    slectBombHeight: 0,
+    optionList: [],
     showOptions: false,
     ioption: null,
     objectRage: {}
   },
-  methods: { 
+  methods: {
+    _getRect: function() {
+      const self = this;
+      const showOptions = this.data.showOptions;
+      if (showOptions) {
+        wx.createSelectorQuery().in(this).select('#select').boundingClientRect(function(rect) {
+          wx.getSystemInfo({
+            success: function(res) {
+              self.setData({
+                slectBombHeight: res.windowHeight - rect.top
+              })
+            }
+          })
+        }).exec();
+      }
+    },
     _bindTabClick(e) {
       // 判断展开
       let iheader = this.data.iheader;
@@ -68,7 +72,7 @@ Component({
         optionList,
         ioption
       })
-
+      this._getRect()
     },
     onTap(e) {
       const i = e.currentTarget.dataset.index;
@@ -80,17 +84,10 @@ Component({
         ioption,
         objectRage,
       })
-
       //处理外部事件
-
       var myEventDetail = objectRage // detail对象，提供给事件监听函数
       var myEventOption = {} // 触发事件的选项
       this.triggerEvent('select', myEventDetail, myEventOption)
     },
-    getRequest(){
-      
-    }
-
   }
 })
-

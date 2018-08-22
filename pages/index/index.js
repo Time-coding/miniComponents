@@ -4,6 +4,17 @@ const app = getApp()
 
 Page({
   data: {
+    scrollArray:[
+      {
+        name:"小里"
+      },
+      {
+        name: "小里"
+      },
+      {
+        name: "小里"
+      }
+    ],
     array: [
       {
         0: '复合状态',
